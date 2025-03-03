@@ -6,7 +6,7 @@
 /*   By: njooris <njooris@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 13:22:03 by njooris           #+#    #+#             */
-/*   Updated: 2025/02/20 17:02:09 by njooris          ###   ########.fr       */
+/*   Updated: 2025/03/03 12:07:17 by njooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,19 @@ int	lst_atoi(const char *nptr, int *check)
 
 void	free_all(t_list_push *lst)
 {
- 	t_list_push *temp;
-    t_list_push *head;
+	t_list_push	*temp;
+	t_list_push	*head;
 
-    head = lst;
-    if (lst == NULL)
-        return;
-    while (lst->next != head)
-    {
-        temp = lst;
-        lst = lst->next;
-        free(temp);
-    }
-    free(lst);
+	head = lst;
+	if (lst == NULL)
+		return ;
+	while (lst->next != head)
+	{
+		temp = lst;
+		lst = lst->next;
+		free(temp);
+	}
+	free(lst);
 }
 
 int	check_double(t_list_push *lst, int i, t_data *data_a)

@@ -6,7 +6,7 @@
 /*   By: njooris <njooris@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:58:04 by njooris           #+#    #+#             */
-/*   Updated: 2025/03/03 11:00:18 by njooris          ###   ########.fr       */
+/*   Updated: 2025/03/03 12:12:23 by njooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int	search_up(t_list_push *lst, int start_min, int start_max, t_data *data_a, in
 
 	i = 0;
 	while (lst && (lst->content > start_max || lst->content < start_min
-				|| lst->content >= val_max - 2 ) 
-				&& i < data_a->len && data_a->len > 3)
+			|| lst->content >= val_max - 2)
+		&& i < data_a->len && data_a->len > 3)
 	{
 		lst = lst->next;
 		i++;
@@ -33,7 +33,7 @@ int	search_down(t_list_push *lst, int start_min, int start_max, t_data *data_a, 
 
 	i = 0;
 	while (lst && (lst->content > start_max
-			|| lst->content < start_min ||  lst->content >= val_max - 2) && i < data_a->len && data_a->len > 3)
+			|| lst->content < start_min || lst->content >= val_max - 2) && i < data_a->len && data_a->len > 3)
 	{
 		lst = lst->pre;
 		i++;

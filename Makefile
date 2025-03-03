@@ -3,11 +3,13 @@ NAME := push_swap
 SRCS := push_swap.c \
 		instruction.c \
 		instruction2.c \
+		instruction3.c \
 		parsing.c \
 		parsing2.c \
 		sorting.c \
 		presort.c \
 		search_sort.c \
+		utils_sorting.c \
 
 SRCS_BONUS := 	checker.c \
 				handle_checker.c \

@@ -6,7 +6,7 @@
 /*   By: njooris <njooris@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 18:26:44 by njooris           #+#    #+#             */
-/*   Updated: 2025/03/03 09:09:07 by njooris          ###   ########.fr       */
+/*   Updated: 2025/03/03 13:08:07 by njooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void		lst_rra(t_list_push **a, t_data *data_a);
 void		lst_rrb(t_list_push **b, t_data *data_b);
 void		lst_rrr(t_list_push **a, t_data *data_a, t_list_push **b, t_data *data_b);
 
-
 // parsing
 void		print_lst(t_list_push *a, t_data *data_a);
 int			parsing(t_list_push **lst, char **av, t_data *data_a);
@@ -64,22 +63,22 @@ t_list_push	*lstnew(int content);
 void		lstadd_back_circle(t_list_push **lst, t_list_push *new);
 
 // sorting
-void	sorting(t_list_push **a, t_data *data_a);
-void	sort_three(t_list_push **a, t_data *data_a);
+void		sorting(t_list_push **a, t_data *data_a);
+void		sort_three(t_list_push **a, t_data *data_a);
+int			search_path(t_list_push *b, int val);
+int			choose_manage(t_list_push *b, int val, t_data *data_b);
 
 // presort
-void	lstcpy_circle(t_list_push *src, t_list_push **to, t_data *data_a);
-void	simplify_lst(t_list_push **a, t_data *data_a);
-void	presort(t_list_push **a, t_list_push **b, t_data *data_a, t_data *data_b);
+void		lstcpy_circle(t_list_push *src, t_list_push **to, t_data *data_a);
+void		simplify_lst(t_list_push **a, t_data *data_a);
+void		presort(t_list_push **a, t_list_push **b, t_data *data_a, t_data *data_b);
 
 // utils
-void	print_lst(t_list_push *a, t_data *data_a);
-void	print_lst_reverse(t_list_push *a, t_data *data_a);
-int		checker(t_list_push *lst, t_data *data_lst);
-void	lstcpy_circle(t_list_push *src, t_list_push **to, t_data *data_a);
-void	simplify_lst(t_list_push **a, t_data *data_a);
+int			checker(t_list_push *lst, t_data *data_lst);
+void		lstcpy_circle(t_list_push *src, t_list_push **to, t_data *data_a);
+void		simplify_lst(t_list_push **a, t_data *data_a);
 
 // search sort
-int	search_opti(t_list_push **a, int start_min, int mid, int end_max, t_data *data_a, int val_max);
+int			search_opti(t_list_push **a, int start_min, int mid, int end_max, t_data *data_a, int val_max);
 
 #endif
