@@ -6,7 +6,7 @@
 /*   By: njooris <njooris@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:59:55 by njooris           #+#    #+#             */
-/*   Updated: 2025/03/03 13:37:00 by njooris          ###   ########.fr       */
+/*   Updated: 2025/03/03 14:14:02 by njooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,39 +22,34 @@ int	best_size_of_part(int size)
 	return (square);
 }
 
-void	presort(t_list_push **a, t_list_push **b,
-				t_data *data_a, t_data *data_b)
+void	presort(t_sort_datas *sd)
 {
-	int	part_bot;
-	int	mid;
-	int	part_top;
-	int	val_max;
+	t_search_data	search;
+	int				mid;
+	int				val_max;
 
-	val_max = data_a->len;
-	part_bot = best_size_of_part(data_a->len);
-	part_top = part_bot;
-	mid = data_a->len / 2;
-	while (*a && data_a->len > 3)
+	val_max = sd->data_a->len;
+	search.part_bot = best_size_of_part(sd->data_a->len);
+	search.part_top = search.part_bot;
+	mid = sd->data_a->len / 2;
+	while ((*sd->a) && sd->data_a->len > 3)
 	{
-		if ((*a)->content >= mid && (*a)->content <= mid + part_top++
-			&& (*a)->content < val_max - 2)
-			lst_pb(a, b, data_a, data_b);
-		else if ((*a)->content < mid && (*a)->content >= mid - part_bot++
-			&& (*a)->content < val_max - 2)
+		if ((*sd->a)->content >= mid && (*sd->a)->content <= mid + search.part_top++
+			&& (*sd->a)->content < val_max - 2)
+			lst_pb(sd->a, sd->b, sd->data_a, sd->data_b);
+		else if ((*sd->a)->content < mid && (*sd->a)->content >= mid - search.part_bot++
+			&& (*sd->a)->content < val_max - 2)
 		{
-			lst_pb(a, b, data_a, data_b);
-			lst_rb(b, data_b);
+			lst_pb(sd->a, sd->b, sd->data_a, sd->data_b);
+			lst_rb(sd->b, sd->data_b);
 		}
-		while ((*a) && search_opti(a, mid - part_bot, mid,
-				mid + part_top, data_a, val_max) != 0)
+		while ((*sd->a) && search_opti(mid, val_max, sd, search) != 0)
 		{
-			if (search_opti(a, mid - part_bot, mid,
-					mid + part_top, data_a, val_max) <= 0)
-				lst_rra(a, data_a);
-			else if (search_opti(a, mid - part_bot,
-					mid, mid + part_top, data_a, val_max) >= 0)
-				lst_ra(a, data_a);
+			if (search_opti(mid, val_max, sd, search) <= 0)
+				lst_rra(sd->a, sd->data_a);
+			else if (search_opti(mid, val_max, sd, search) >= 0)
+				lst_ra(sd->a, sd->data_a);
 		}
 	}
-	sort_three(a, data_a);
+	sort_three(sd->a, sd->data_a);
 }

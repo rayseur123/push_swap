@@ -6,7 +6,7 @@
 /*   By: njooris <njooris@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:58:04 by njooris           #+#    #+#             */
-/*   Updated: 2025/03/03 12:12:23 by njooris          ###   ########.fr       */
+/*   Updated: 2025/03/03 14:08:52 by njooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,16 @@ int	decide_result(int start_up, int start_down, int end_up, int end_down)
 	return (end_down);
 }
 
-int	search_opti(t_list_push **a, int start_min, int mid, int end_max, t_data *data_a, int val_max)
+int	search_opti(int mid, int val_max, t_sort_datas *sd, t_search_data search)
 {
 	int			start_up;
 	int			start_down;
 	int			end_up;
 	int			end_down;
 
-	start_up = search_up(*a, start_min, mid, data_a, val_max);
-	start_down = search_down(*a, start_min, mid, data_a, val_max);
-	end_up = search_up(*a, mid, end_max, data_a, val_max);
-	end_down = search_down(*a, mid, end_max, data_a, val_max);
+	start_up = search_up(*sd->a, mid - search.part_bot, mid, sd->data_a, val_max);
+	start_down = search_down(*sd->a, mid - search.part_bot, mid, sd->data_a, val_max);
+	end_up = search_up(*sd->a, mid, mid + search.part_bot, sd->data_a, val_max);
+	end_down = search_down(*sd->a, mid, mid + search.part_bot, sd->data_a, val_max);
 	return (decide_result(start_up, start_down, end_up, end_down));
 }

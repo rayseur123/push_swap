@@ -6,7 +6,7 @@
 /*   By: njooris <njooris@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 13:37:48 by njooris           #+#    #+#             */
-/*   Updated: 2025/03/03 13:37:10 by njooris          ###   ########.fr       */
+/*   Updated: 2025/03/03 13:40:30 by njooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void	sorting(t_list_push **a, t_data *data_a)
 		sort_datas->b = &b;
 		sort_datas->data_a = data_a;
 		sort_datas->data_b = data_b;
-		presort(a, &b, data_a, data_b);
+		presort(sort_datas);
 		sort(sort_datas);
 	}
 	free_all(*a);
