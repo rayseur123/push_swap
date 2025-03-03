@@ -6,9 +6,7 @@ SRCS := push_swap.c \
 		parsing.c \
 		parsing2.c \
 		sorting.c \
-		manage_lst.c \
-		manage_stack_sort.c \
-		pre_sorting.c \
+		presort.c \
 		search_sort.c \
 
 SRCS_BONUS := 	checker.c \
@@ -33,10 +31,13 @@ PATH_LIBS := libft/
 INCLUDE_DIRS := -I libft/include
 
 CC = cc
-CPPFLAGS := -MMD -MP -g3 $(INCLUDE_DIRS)
-CFLAGS := -Wall -Wextra -Werror
+CPPFLAGS := -MMD -MP -g3 $(INCLUDE_DIRS) #-fsanitize=address -fsanitize=leak
+CFLAGS := -Wall -Wextra -Werror  #-fsanitize=address -fsanitize=leak
 
 all: $(NAME)
+
+#$(NAME): $(OBJS) $(LIBS)
+#	$(CC) $^ -fsanitize=address -fsanitize=leak -o $@
 
 $(NAME): $(OBJS) $(LIBS)
 	$(CC) $^ -o $@

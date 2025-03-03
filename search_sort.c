@@ -6,44 +6,39 @@
 /*   By: njooris <njooris@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:58:04 by njooris           #+#    #+#             */
-/*   Updated: 2025/02/05 16:58:10 by njooris          ###   ########.fr       */
+/*   Updated: 2025/03/03 11:00:18 by njooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	search_up(t_list_push *lst, int start_min, int start_max)
+int	search_up(t_list_push *lst, int start_min, int start_max, t_data *data_a, int val_max)
+{
+	int	i;
+
+	i = 0;
+	while (lst && (lst->content > start_max || lst->content < start_min
+				|| lst->content >= val_max - 2 ) 
+				&& i < data_a->len && data_a->len > 3)
+	{
+		lst = lst->next;
+		i++;
+	}
+	return (i);
+}
+
+int	search_down(t_list_push *lst, int start_min, int start_max, t_data *data_a, int val_max)
 {
 	int	i;
 
 	i = 0;
 	while (lst && (lst->content > start_max
-			|| lst->content < start_min) && i < lstsize(lst))
+			|| lst->content < start_min ||  lst->content >= val_max - 2) && i < data_a->len && data_a->len > 3)
 	{
-		lst_r(&lst, 3);
+		lst = lst->pre;
 		i++;
 	}
-	free_all(lst);
-	return (i);
-}
-
-int	search_down(t_list_push *lst, int start_min, int start_max)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (lst && i < lstsize(lst))
-	{
-		if (lst && lst->content >= start_min && lst->content <= start_max)
-			j = i;
-		lst_r(&lst, 3);
-		i++;
-	}
-	i = (i - j) * -1;
-	free_all(lst);
-	return (i);
+	return (i * -1);
 }
 
 int	decide_result(int start_up, int start_down, int end_up, int end_down)
@@ -60,21 +55,16 @@ int	decide_result(int start_up, int start_down, int end_up, int end_down)
 	return (end_down);
 }
 
-int	search_opti(t_list_push **a, int start_min, int mid, int end_max)
+int	search_opti(t_list_push **a, int start_min, int mid, int end_max, t_data *data_a, int val_max)
 {
 	int			start_up;
 	int			start_down;
 	int			end_up;
 	int			end_down;
-	t_list_push	*lst;
 
-	lstcpy(*a, &lst);
-	start_up = search_up(lst, start_min, mid);
-	lstcpy(*a, &lst);
-	start_down = search_down(lst, start_min, mid);
-	lstcpy(*a, &lst);
-	end_up = search_up(lst, mid, end_max);
-	lstcpy(*a, &lst);
-	end_down = search_down(lst, mid, end_max);
+	start_up = search_up(*a, start_min, mid, data_a, val_max);
+	start_down = search_down(*a, start_min, mid, data_a, val_max);
+	end_up = search_up(*a, mid, end_max, data_a, val_max);
+	end_down = search_down(*a, mid, end_max, data_a, val_max);
 	return (decide_result(start_up, start_down, end_up, end_down));
 }

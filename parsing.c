@@ -6,7 +6,7 @@
 /*   By: njooris <njooris@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 13:22:03 by njooris           #+#    #+#             */
-/*   Updated: 2025/02/03 14:01:41 by njooris          ###   ########.fr       */
+/*   Updated: 2025/02/20 17:02:09 by njooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,26 +45,32 @@ int	lst_atoi(const char *nptr, int *check)
 
 void	free_all(t_list_push *lst)
 {
-	t_list_push	*temp;
+ 	t_list_push *temp;
+    t_list_push *head;
 
-	while (lst)
-	{
-		temp = lst;
-		if (lst->next)
-			lst = lst->next;
-		else
-			lst = NULL;
-		free(temp);
-	}
+    head = lst;
+    if (lst == NULL)
+        return;
+    while (lst->next != head)
+    {
+        temp = lst;
+        lst = lst->next;
+        free(temp);
+    }
+    free(lst);
 }
 
-int	check_double(t_list_push *lst, int i)
+int	check_double(t_list_push *lst, int i, t_data *data_a)
 {
-	while (lst)
+	int	count;
+
+	count = 0;
+	while (lst && count != data_a->len)
 	{
 		if (lst->content == i)
 			return (0);
 		lst = lst->next;
+		count++;
 	}
 	return (1);
 }
@@ -77,20 +83,7 @@ t_list_push	*lstnew(int content)
 	if (!lst)
 		return (NULL);
 	lst->next = NULL;
+	lst->pre = NULL;
 	lst->content = content;
-	return (lst);
-}
-
-t_list_push	*lstlast(t_list_push *lst)
-{
-	t_list_push	*l;
-
-	if (lst)
-	{
-		l = lst;
-		while (l->next)
-			l = l->next;
-		return (l);
-	}
 	return (lst);
 }
