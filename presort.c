@@ -6,7 +6,7 @@
 /*   By: njooris <njooris@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:59:55 by njooris           #+#    #+#             */
-/*   Updated: 2025/03/03 14:14:02 by njooris          ###   ########.fr       */
+/*   Updated: 2025/03/03 14:59:10 by njooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,29 @@ int	best_size_of_part(int size)
 	return (square);
 }
 
+void	presort_instruction(t_search_data *search, t_sort_datas *sd,
+							int mid, int val_max)
+{
+	if ((*sd->a)->content >= mid
+		&& (*sd->a)->content <= mid + search->part_top++
+		&& (*sd->a)->content < val_max - 2)
+		lst_pb(sd->a, sd->b, sd->data_a, sd->data_b);
+	else if ((*sd->a)->content < mid
+		&& (*sd->a)->content >= mid - search->part_bot++
+		&& (*sd->a)->content < val_max - 2)
+	{
+		lst_pb(sd->a, sd->b, sd->data_a, sd->data_b);
+		lst_rb(sd->b, sd->data_b);
+	}
+	while ((*sd->a) && search_opti(mid, val_max, sd, *search) != 0)
+	{
+		if (search_opti(mid, val_max, sd, *search) <= 0)
+			lst_rra(sd->a, sd->data_a);
+		else if (search_opti(mid, val_max, sd, *search) >= 0)
+			lst_ra(sd->a, sd->data_a);
+	}
+}
+
 void	presort(t_sort_datas *sd)
 {
 	t_search_data	search;
@@ -33,23 +56,6 @@ void	presort(t_sort_datas *sd)
 	search.part_top = search.part_bot;
 	mid = sd->data_a->len / 2;
 	while ((*sd->a) && sd->data_a->len > 3)
-	{
-		if ((*sd->a)->content >= mid && (*sd->a)->content <= mid + search.part_top++
-			&& (*sd->a)->content < val_max - 2)
-			lst_pb(sd->a, sd->b, sd->data_a, sd->data_b);
-		else if ((*sd->a)->content < mid && (*sd->a)->content >= mid - search.part_bot++
-			&& (*sd->a)->content < val_max - 2)
-		{
-			lst_pb(sd->a, sd->b, sd->data_a, sd->data_b);
-			lst_rb(sd->b, sd->data_b);
-		}
-		while ((*sd->a) && search_opti(mid, val_max, sd, search) != 0)
-		{
-			if (search_opti(mid, val_max, sd, search) <= 0)
-				lst_rra(sd->a, sd->data_a);
-			else if (search_opti(mid, val_max, sd, search) >= 0)
-				lst_ra(sd->a, sd->data_a);
-		}
-	}
+		presort_instruction(&search, sd, mid, val_max);
 	sort_three(sd->a, sd->data_a);
 }

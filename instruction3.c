@@ -6,14 +6,14 @@
 /*   By: njooris <njooris@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:11:00 by njooris           #+#    #+#             */
-/*   Updated: 2025/03/03 13:11:57 by njooris          ###   ########.fr       */
+/*   Updated: 2025/03/03 17:03:06 by njooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
 
-void	lst_r(t_list_push **a, t_data *data_a) // valid
+void	lst_r(t_list_push **a, t_data *data_a)
 {
 	if (*a == NULL || (*a)->next == NULL)
 		return ;
@@ -21,7 +21,7 @@ void	lst_r(t_list_push **a, t_data *data_a) // valid
 	data_a->first = *a;
 }
 
-void	lst_ra(t_list_push **a, t_data *data_a) // valid
+void	lst_ra(t_list_push **a, t_data *data_a)
 {
 	if (*a == NULL || (*a)->next == NULL || data_a->len < 2)
 		return ;
@@ -30,7 +30,7 @@ void	lst_ra(t_list_push **a, t_data *data_a) // valid
 	ft_printf("ra\n");
 }
 
-void	lst_rb(t_list_push **b, t_data *data_b) // valid
+void	lst_rb(t_list_push **b, t_data *data_b)
 {
 	if (*b == NULL || (*b)->next == NULL || data_b->len < 2)
 		return ;
@@ -39,7 +39,8 @@ void	lst_rb(t_list_push **b, t_data *data_b) // valid
 	ft_printf("rb\n");
 }
 
-void	lst_rr(t_list_push **a, t_list_push **b, t_data *data_a, t_data *data_b) // valid
+void	lst_rr(t_list_push **a, t_list_push **b,
+		t_data *data_a, t_data *data_b)
 {
 	if (*b == NULL || (*b)->next == NULL
 		|| *a == NULL || (*a)->next == NULL)

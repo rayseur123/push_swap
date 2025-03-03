@@ -10,6 +10,7 @@ SRCS := push_swap.c \
 		presort.c \
 		search_sort.c \
 		utils_sorting.c \
+		utils.c \
 
 SRCS_BONUS := 	checker.c \
 				handle_checker.c \
@@ -59,11 +60,11 @@ bonus: $(OBJS_B) $(LIBS)
 		$(CC) $^ -o checker
 
 clean:
-	$(MAKE) clean -C lib/libft/
+	$(MAKE) clean -C libft/
 	rm -f $(OBJS) $(DEPS)
 
 fclean: clean
-	$(MAKE) fclean -C lib/libft/
+	$(MAKE) fclean -C libft/
 	rm -f $(NAME)
 
 re: fclean all
