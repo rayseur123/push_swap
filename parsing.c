@@ -6,7 +6,7 @@
 /*   By: njooris <njooris@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 13:22:03 by njooris           #+#    #+#             */
-/*   Updated: 2025/03/03 12:07:17 by njooris          ###   ########.fr       */
+/*   Updated: 2025/03/04 11:27:35 by njooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ int	lst_atoi(const char *nptr, int *check)
 	while (nptr[x] != '\0')
 	{
 		if ((10 * val + (nptr[x] - '0')) / 10 != val
-			|| val > 2147483647 || val < -2147483648
+			|| ((10 * val + (nptr[x] - '0')) > 2147483647 && negativ != -1)
+			|| (10 * val + (nptr[x] - '0')) > 2147483648
 			|| !ft_isdigit(nptr[x]))
 			*check = 0;
 		val = 10 * val + (nptr[x++] - '0');

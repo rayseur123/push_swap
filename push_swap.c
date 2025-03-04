@@ -6,7 +6,7 @@
 /*   By: njooris <njooris@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:10:43 by njooris           #+#    #+#             */
-/*   Updated: 2025/03/03 14:17:51 by njooris          ###   ########.fr       */
+/*   Updated: 2025/03/04 10:22:13 by njooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@ int	main(int ac, char **av)
 		write(2, "Error\n", 6);
 		return (0);
 	}
-	sorting(&lst, data_a);
+	if (ac >= 3)
+		sorting(&lst, data_a);
+	else
+		free(lst);
 	return (0);
 }
