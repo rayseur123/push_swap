@@ -6,7 +6,7 @@
 /*   By: njooris <njooris@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 18:26:44 by njooris           #+#    #+#             */
-/*   Updated: 2025/03/03 17:14:58 by njooris          ###   ########.fr       */
+/*   Updated: 2025/03/04 09:18:35 by njooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdio.h>
 # include <unistd.h>
 
+// struct lst
 typedef struct s_list_push
 {
 	int					content;
@@ -25,12 +26,14 @@ typedef struct s_list_push
 	struct s_list_push	*pre;
 }	t_list_push;
 
+// struct data lst
 typedef struct s_data
 {
 	struct s_list_push	*first;
 	int					len;
 }	t_data;
 
+// global struct lst
 typedef struct s_sort_datas
 {
 	struct s_list_push	**a;
@@ -39,6 +42,7 @@ typedef struct s_sort_datas
 	struct s_data		*data_b;
 }	t_sort_datas;
 
+// sort data struct
 typedef struct s_search_data
 {
 	int	part_bot;
